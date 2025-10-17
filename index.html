@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Plantilla - Aplicación Web (Wireframe + Diseño)</title>
+  <meta name="description" content="Wireframe y plantilla HTML/CSS para una aplicación web: landing, subida CSV, dashboard y estilos." />
+  <style>
+    /* ===== Variables / Paleta ===== */
+    :root{
+      --bg:#0f1724; /* azul oscuro */
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#06b6d4; /* cian */
+      --accent-2:#7c3aed; /* viola */
+      --glass: rgba(255,255,255,0.04);
+      --radius:16px;
+      --maxw:1100px;
+      --ff-sans: Inter, Roboto, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    }
+    /* ===== Reset ligero ===== */
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      font-family:var(--ff-sans);
+      background: linear-gradient(180deg,var(--bg) 0%, #071022 100%);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:40px 20px;
+      display:flex;justify-content:center;
+    }
+    .wrap{width:100%;max-width:var(--maxw)}
+
+    /* ===== Top header / nav ===== */
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-weight:700}
+    .brand h1{font-size:18px;margin:0}
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-size:14px}
+
+    /* ===== Main grid ===== */
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
+
+    /* ===== Left: content / wireframe + html preview ===== */
+    .panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);padding:20px;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    .hero{display:flex;gap:18px;align-items:center}
+    .hero .wireframe{flex:1;padding:18px;border-radius:12px;background:var(--card);min-height:220px;display:flex;flex-direction:column}
+    .hero .info{width:260px}
+    .muted{color:var(--muted);font-size:14px}
+
+    /* ===== Wireframe SVG ===== */
+    .wireframe svg{width:100%;height:100%}
+
+    /* ===== Form + dashboard preview ===== */
+    .section{margin-top:18px}
+    form.upload{display:flex;gap:10px;align-items:center}
+    .btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;padding:10px 14px;border-radius:10px;color:#041025;font-weight:600;cursor:pointer}
+
+    .dashboard{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
+    .card{background:var(--glass);padding:12px;border-radius:12px;min-height:100px;border:1px solid rgba(255,255,255,0.03)}
+    .card h3{margin:0 0 8px 0;font-size:14px}
+    .placeholder{height:120px;border-radius:8px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px}
+
+    /* ===== Right: inspector / palette ===== */
+    .inspector{position:sticky;top:24px}
+    .palette{display:flex;gap:8px;margin-top:10px}
+    .sw{width:36px;height:36px;border-radius:8px;border:1px solid rgba(255,255,255,0.04)}
+    .meta{font-size:13px;color:var(--muted);margin-top:10px}
+
+    /* ===== Footer / responsive ===== */
+    footer{color:var(--muted);font-size:13px;margin-top:18px;text-align:center}
+    @media(max-width:920px){
+      .grid{grid-template-columns:1fr}
+      .hero{flex-direction:column}
+      .hero .info{width:100%}
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">WA</div>
+        <div>
+          <h1>WebApp — Plantilla</h1>
+          <div class="muted">Wireframe y plantilla visual</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Dashboard</a>
+        <a href="#">Ayuda</a>
+      </nav>
+    </header>
+
+    <main class="grid">
+      <!-- Left column: wireframe + preview -->
+      <section class="panel">
+        <div class="hero">
+          <div class="wireframe" aria-hidden="true">
+            <!-- Simple wireframe SVG (xcalidraw-like) -->
+            <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="8" width="984" height="584" rx="12" fill="#071022" stroke="#0b1220"/>
+              <!-- header -->
+              <rect x="24" y="24" width="952" height="64" rx="8" fill="#0f1724" stroke="#0b1220"/>
+              <rect x="40" y="40" width="160" height="40" rx="6" fill="#09202a"/>
+              <rect x="220" y="40" width="600" height="40" rx="6" fill="#071426"/>
+
+              <!-- left column cards -->
+              <rect x="24" y="108" width="640" height="220" rx="10" fill="#081226" stroke="#083045"/>
+              <rect x="680" y="108" width="296" height="100" rx="10" fill="#081226" stroke="#083045"/>
+              <rect x="680" y="220" width="296" height="108" rx="10" fill="#081226" stroke="#083045"/>
+
+              <!-- inside left large card: upload area + table -->
+              <rect x="44" y="128" width="240" height="56" rx="8" fill="#041225"/>
+              <rect x="300" y="128" width="344" height="56" rx="8" fill="#041225"/>
+              <rect x="44" y="200" width="600" height="100" rx="6" fill="#051226"/>
+
+              <!-- bottom charts -->
+              <rect x="24" y="344" width="316" height="220" rx="10" fill="#081226"/>
+              <rect x="352" y="344" width="312" height="220" rx="10" fill="#081226"/>
+              <rect x="680" y="344" width="296" height="220" rx="10" fill="#081226"/>
+
+              <!-- small UI indicators -->
+              <circle cx="72" cy="52" r="5" fill="#06b6d4"/>
+              <circle cx="92" cy="52" r="5" fill="#7c3aed"/>
+            </svg>
+          </div>
+
+          <div class="info">
+            <h3 style="margin:0">Resumen del diseño</h3>
+            <p class="muted">Estructura: Header — Área subida CSV — Paneles de datos — Gráficos — Inspector lateral con estilos y paleta.</p>
+            <div style="margin-top:12px">
+              <strong>Objetivo:</strong>
+              <div class="muted">Proveer una interfaz clara para cargar y visualizar datos con un dashboard minimalista.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3 style="margin:6px 0 6px 0">Subir archivo CSV</h3>
+          <form class="upload" onsubmit="event.preventDefault();alert('Simulación: archivo cargado');">
+            <input type="file" accept=".csv" aria-label="Subir CSV" />
+            <button class="btn">Subir</button>
+          </form>
+
+          <div class="dashboard">
+            <div class="card">
+              <h3>Resumen</h3>
+              <div class="placeholder">Tarjeta con KPIs (ej. filas, columnas, errores)</div>
+            </div>
+            <div class="card">
+              <h3>Vista rápida</h3>
+              <div class="placeholder">Tabla previa / muestreo 5-10 filas</div>
+            </div>
+            <div class="card">
+              <h3>Gráfico 1</h3>
+              <div class="placeholder">Gráfico de líneas / barras</div>
+            </div>
+            <div class="card">
+              <h3>Gráfico 2</h3>
+              <div class="placeholder">Comparaciones</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3 style="margin:6px 0">Notas de implementación</h3>
+          <ul class="muted" style="margin-top:6px">
+            <li>Backend: endpoint POST /upload que devuelva JSON con filas muestreadas.</li>
+            <li>Frontend: usar FileReader para previsualizar CSV antes de enviar.</li>
+            <li>Gráficos: Matplotlib (server-side) o Chart.js (client-side).</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- Right column: inspector -->
+      <aside class="inspector panel">
+        <h3 style="margin:0">Inspector</h3>
+        <div class="meta">Paleta de colores</div>
+        <div class="palette">
+          <div class="sw" style="background:var(--accent)"></div>
+          <div class="sw" style="background:var(--accent-2)"></div>
+          <div class="sw" style="background:var(--card)"></div>
+          <div class="sw" style="background:var(--muted);"></div>
+        </div>
+
+        <div class="meta">Tipografía</div>
+        <div class="muted">Inter / Roboto — Sistema</div>
+
+        <div class="meta">Componentes</div>
+        <ul class="muted">
+          <li>Header</li>
+          <li>Card / Panel</li>
+          <li>Uploader</li>
+          <li>Table / Pagination</li>
+          <li>Chart area</li>
+        </ul>
+
+        <div class="meta">Espaciado</div>
+        <div class="muted">Grid principal con 1fr + 360px; cards con padding 12px; border-radius 12-16px.</div>
+
+        <div style="margin-top:14px">
+          <strong style="font-size:13px">Exportable</strong>
+          <div class="muted" style="font-size:13px">HTML/CSS listo para integrar con Flask o cualquier backend.</div>
+        </div>
+
+      </aside>
+    </main>
+
+    <footer>
+      Plantilla generada — Colores accesibles y estructura responsive.
+    </footer>
+  </div>
+</body>
+</html>
