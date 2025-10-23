@@ -2,218 +2,293 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Plantilla - Aplicación Web (Wireframe + Diseño)</title>
-  <meta name="description" content="Wireframe y plantilla HTML/CSS para una aplicación web: landing, subida CSV, dashboard y estilos." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sistema de Reservas - HotelPlus (Prototipo)</title>
+  <!--
+    Este archivo contiene:
+      - Un wireframe SVG en la parte superior (boceto técnico)
+      - HTML + CSS moderno y responsivo
+      - JavaScript ligero que simula gestión de reservas (localStorage)
+    Uso: guarda como `index.html` y ábrelo en tu navegador.
+  -->
   <style>
-    /* ===== Variables / Paleta ===== */
     :root{
-      --bg:#0f1724; /* azul oscuro */
-      --card:#0b1220;
-      --muted:#94a3b8;
-      --accent:#06b6d4; /* cian */
-      --accent-2:#7c3aed; /* viola */
-      --glass: rgba(255,255,255,0.04);
-      --radius:16px;
-      --maxw:1100px;
-      --ff-sans: Inter, Roboto, system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --primary:#0066ff; /* azul principal */
+      --accent:#00b894;  /* verde/acento */
+      --muted:#6b7280;
+      --soft:#eef2ff;
+      --glass: rgba(255,255,255,0.7);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
-    /* ===== Reset ligero ===== */
+
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0}
-    body{
-      font-family:var(--ff-sans);
-      background: linear-gradient(180deg,var(--bg) 0%, #071022 100%);
-      color:#e6eef6;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      padding:40px 20px;
-      display:flex;justify-content:center;
-    }
-    .wrap{width:100%;max-width:var(--maxw)}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#ffffff 60%);color:#111827;}
 
-    /* ===== Top header / nav ===== */
-    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
-    .brand{display:flex;gap:12px;align-items:center}
-    .brand .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-weight:700}
-    .brand h1{font-size:18px;margin:0}
-    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-size:14px}
-
-    /* ===== Main grid ===== */
-    .grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
-
-    /* ===== Left: content / wireframe + html preview ===== */
-    .panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);padding:20px;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
-    .hero{display:flex;gap:18px;align-items:center}
-    .hero .wireframe{flex:1;padding:18px;border-radius:12px;background:var(--card);min-height:220px;display:flex;flex-direction:column}
-    .hero .info{width:260px}
-    .muted{color:var(--muted);font-size:14px}
-
-    /* ===== Wireframe SVG ===== */
-    .wireframe svg{width:100%;height:100%}
-
-    /* ===== Form + dashboard preview ===== */
-    .section{margin-top:18px}
-    form.upload{display:flex;gap:10px;align-items:center}
-    .btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;padding:10px 14px;border-radius:10px;color:#041025;font-weight:600;cursor:pointer}
-
-    .dashboard{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
-    .card{background:var(--glass);padding:12px;border-radius:12px;min-height:100px;border:1px solid rgba(255,255,255,0.03)}
-    .card h3{margin:0 0 8px 0;font-size:14px}
-    .placeholder{height:120px;border-radius:8px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px}
-
-    /* ===== Right: inspector / palette ===== */
-    .inspector{position:sticky;top:24px}
-    .palette{display:flex;gap:8px;margin-top:10px}
-    .sw{width:36px;height:36px;border-radius:8px;border:1px solid rgba(255,255,255,0.04)}
-    .meta{font-size:13px;color:var(--muted);margin-top:10px}
-
-    /* ===== Footer / responsive ===== */
-    footer{color:var(--muted);font-size:13px;margin-top:18px;text-align:center}
-    @media(max-width:920px){
-      .grid{grid-template-columns:1fr}
-      .hero{flex-direction:column}
-      .hero .info{width:100%}
+    /* Wireframe area */
+    .wireframe{
+      max-width:1100px;margin:24px auto;padding:18px;background:linear-gradient(90deg,#ffffff, #fbfdff);border-radius:12px;box-shadow:0 6px 20px rgba(16,24,40,0.06);
     }
 
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 24px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--primary),#7c5cff);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    nav a{margin-left:14px;color:var(--muted);text-decoration:none;font-weight:600}
+
+    .container{max-width:1100px;margin:18px auto;padding:18px}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+    .hero-card{background:var(--card);padding:24px;border-radius:12px;box-shadow:0 6px 20px rgba(16,24,40,0.04)}
+
+    .search-form label{display:block;font-size:13px;color:var(--muted);margin-top:10px}
+    .search-row{display:flex;gap:10px}
+    input, select{width:100%;padding:12px;border-radius:8px;border:1px solid #e6e9ef;font-size:14px}
+    button.primary{background:var(--primary);color:white;padding:12px 16px;border-radius:10px;border:none;font-weight:700;cursor:pointer}
+    button.ghost{background:transparent;border:2px solid var(--primary);padding:10px 14px;border-radius:10px;font-weight:700;color:var(--primary);cursor:pointer}
+
+    .rooms-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:18px}
+    .room{background:var(--card);border-radius:12px;padding:12px;box-shadow:0 6px 18px rgba(16,24,40,0.04);display:flex;flex-direction:column}
+    .room img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+    .room h4{margin:10px 0 6px}
+    .room p{margin:0 0 10px;color:var(--muted);font-size:14px}
+    .room .price{margin-top:auto;font-weight:800}
+
+    /* modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.45);display:none;align-items:center;justify-content:center;padding:20px}
+    .modal{background:var(--card);width:100%;max-width:640px;border-radius:12px;padding:18px}
+
+    footer{max-width:1100px;margin:20px auto;padding:14px;color:var(--muted);text-align:center}
+
+    /* responsive */
+    @media (max-width:880px){.hero{grid-template-columns:1fr;padding:0}.wireframe{margin:8px}}
+
+    /* small UI helpers for admin-ish badges */
+    .badge{display:inline-block;padding:6px 8px;border-radius:999px;font-weight:700;font-size:13px}
+    .badge.available{background:var(--soft);color:var(--primary)}
+    .badge.busy{background:#ffecec;color:#ff5d5d}
+
+    /* quick admin panel */
+    .admin{margin-top:20px;background:linear-gradient(180deg,#fff,#fbfdff);padding:12px;border-radius:12px;border:1px dashed #e6edf8}
+    .admin small{color:var(--muted)}
   </style>
 </head>
 <body>
-  <div class="wrap">
+
+  <!-- WIRENFRAME SVG: boceto técnico (puedes exportarlo a xcalidraw o Figma como referencia) -->
+  <div class="wireframe" aria-hidden="true">
+    <svg width="100%" height="180" viewBox="0 0 1100 180" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="10" width="1080" height="160" rx="10" fill="#f8fafc" stroke="#e6eefc"/>
+      <g transform="translate(20,20)">
+        <rect x="0" y="0" width="220" height="60" rx="8" fill="#ffffff" stroke="#dbeafe"/>
+        <rect x="240" y="0" width="420" height="60" rx="8" fill="#ffffff" stroke="#dbeafe"/>
+        <rect x="680" y="0" width="200" height="60" rx="8" fill="#ffffff" stroke="#dbeafe"/>
+
+        <rect x="0" y="80" width="420" height="80" rx="8" fill="#ffffff" stroke="#dbeafe"/>
+        <rect x="440" y="80" width="440" height="80" rx="8" fill="#ffffff" stroke="#dbeafe"/>
+
+        <text x="10" y="38" font-family="Inter, Arial" font-size="14" fill="#374151">Logo / Nombre</text>
+        <text x="260" y="38" font-family="Inter, Arial" font-size="14" fill="#374151">Buscador de reservas (fecha, huéspedes)</text>
+        <text x="700" y="38" font-family="Inter, Arial" font-size="14" fill="#374151">Acciones (login, reservar)</text>
+
+        <text x="10" y="115" font-family="Inter, Arial" font-size="13" fill="#6b7280">Cards: habitaciones con imagen, descripción corta, precio y acción</text>
+        <text x="450" y="115" font-family="Inter, Arial" font-size="13" fill="#6b7280">Panel admin: calendario / resumen de ocupación</text>
+      </g>
+    </svg>
+    <p style="margin:12px 0 0;color:#475569;font-size:13px">Wireframe técnico: componentes clave — header, buscador, listado de habitaciones, modal de reserva, panel de administración. Puedes recrearlo en Figma o xcalidraw con estos bloques.</p>
+  </div>
+
+  <!-- INTERFAZ PRINCIPAL -->
+  <div class="container">
     <header>
       <div class="brand">
-        <div class="logo">WA</div>
+        <div class="logo">HP</div>
         <div>
-          <h1>WebApp — Plantilla</h1>
-          <div class="muted">Wireframe y plantilla visual</div>
+          <div style="font-weight:800">HotelPlus</div>
+          <div style="font-size:13px;color:var(--muted)">Gestión de reservas & operaciones</div>
         </div>
       </div>
       <nav>
         <a href="#">Inicio</a>
-        <a href="#">Dashboard</a>
-        <a href="#">Ayuda</a>
+        <a href="#rooms">Habitaciones</a>
+        <a href="#admin">Administración</a>
       </nav>
     </header>
 
-    <main class="grid">
-      <!-- Left column: wireframe + preview -->
-      <section class="panel">
-        <div class="hero">
-          <div class="wireframe" aria-hidden="true">
-            <!-- Simple wireframe SVG (xcalidraw-like) -->
-            <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-              <rect x="8" y="8" width="984" height="584" rx="12" fill="#071022" stroke="#0b1220"/>
-              <!-- header -->
-              <rect x="24" y="24" width="952" height="64" rx="8" fill="#0f1724" stroke="#0b1220"/>
-              <rect x="40" y="40" width="160" height="40" rx="6" fill="#09202a"/>
-              <rect x="220" y="40" width="600" height="40" rx="6" fill="#071426"/>
+    <section class="hero">
+      <div class="hero-card">
+        <h2>Encuentra y reserva tu habitación ideal</h2>
+        <p style="color:var(--muted);margin-top:6px">Busca por fechas, número de huéspedes y tipo de habitación. Interfaz pensada para alta conversión.</p>
 
-              <!-- left column cards -->
-              <rect x="24" y="108" width="640" height="220" rx="10" fill="#081226" stroke="#083045"/>
-              <rect x="680" y="108" width="296" height="100" rx="10" fill="#081226" stroke="#083045"/>
-              <rect x="680" y="220" width="296" height="108" rx="10" fill="#081226" stroke="#083045"/>
-
-              <!-- inside left large card: upload area + table -->
-              <rect x="44" y="128" width="240" height="56" rx="8" fill="#041225"/>
-              <rect x="300" y="128" width="344" height="56" rx="8" fill="#041225"/>
-              <rect x="44" y="200" width="600" height="100" rx="6" fill="#051226"/>
-
-              <!-- bottom charts -->
-              <rect x="24" y="344" width="316" height="220" rx="10" fill="#081226"/>
-              <rect x="352" y="344" width="312" height="220" rx="10" fill="#081226"/>
-              <rect x="680" y="344" width="296" height="220" rx="10" fill="#081226"/>
-
-              <!-- small UI indicators -->
-              <circle cx="72" cy="52" r="5" fill="#06b6d4"/>
-              <circle cx="92" cy="52" r="5" fill="#7c3aed"/>
-            </svg>
+        <div class="search-form" style="margin-top:14px">
+          <label>Fechas</label>
+          <div class="search-row">
+            <input id="checkin" type="date" />
+            <input id="checkout" type="date" />
           </div>
 
-          <div class="info">
-            <h3 style="margin:0">Resumen del diseño</h3>
-            <p class="muted">Estructura: Header — Área subida CSV — Paneles de datos — Gráficos — Inspector lateral con estilos y paleta.</p>
-            <div style="margin-top:12px">
-              <strong>Objetivo:</strong>
-              <div class="muted">Proveer una interfaz clara para cargar y visualizar datos con un dashboard minimalista.</div>
-            </div>
+          <label>Huespedes</label>
+          <div class="search-row">
+            <select id="guests">
+              <option value="1">1 adulto</option>
+              <option value="2" selected>2 adultos</option>
+              <option value="3">3 personas</option>
+              <option value="4">4 personas</option>
+            </select>
+            <select id="roomType">
+              <option value="any">Cualquier tipo</option>
+              <option value="single">Individual</option>
+              <option value="double" selected>Doble</option>
+              <option value="suite">Suite</option>
+            </select>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:12px">
+            <button class="primary" id="searchBtn">Buscar</button>
+            <button class="ghost" id="clearBtn">Limpiar</button>
           </div>
         </div>
 
-        <div class="section">
-          <h3 style="margin:6px 0 6px 0">Subir archivo CSV</h3>
-          <form class="upload" onsubmit="event.preventDefault();alert('Simulación: archivo cargado');">
-            <input type="file" accept=".csv" aria-label="Subir CSV" />
-            <button class="btn">Subir</button>
-          </form>
+        <div class="admin" id="admin">
+          <small>Vista admin (simulada): <span id="totalBookings">0</span> reservas en el sistema.</small>
+        </div>
+      </div>
 
-          <div class="dashboard">
-            <div class="card">
-              <h3>Resumen</h3>
-              <div class="placeholder">Tarjeta con KPIs (ej. filas, columnas, errores)</div>
-            </div>
-            <div class="card">
-              <h3>Vista rápida</h3>
-              <div class="placeholder">Tabla previa / muestreo 5-10 filas</div>
-            </div>
-            <div class="card">
-              <h3>Gráfico 1</h3>
-              <div class="placeholder">Gráfico de líneas / barras</div>
-            </div>
-            <div class="card">
-              <h3>Gráfico 2</h3>
-              <div class="placeholder">Comparaciones</div>
-            </div>
-          </div>
+      <aside style="padding:0 8px">
+        <div style="background:linear-gradient(180deg,var(--soft),#f7fff5);padding:18px;border-radius:12px;box-shadow:0 6px 20px rgba(16,24,40,0.04)">
+          <h3 style="margin:0 0 6px">Oferta especial</h3>
+          <p style="color:var(--muted);margin:0 0 10px">Reserva 3 noches y obtén un 15% de descuento.</p>
+          <div style="display:flex;gap:8px"><button class="primary" onclick="applyPromo()">Aplicar promoción</button><button class="ghost" onclick="openBookings()">Ver reservas</button></div>
         </div>
 
-        <div class="section">
-          <h3 style="margin:6px 0">Notas de implementación</h3>
-          <ul class="muted" style="margin-top:6px">
-            <li>Backend: endpoint POST /upload que devuelva JSON con filas muestreadas.</li>
-            <li>Frontend: usar FileReader para previsualizar CSV antes de enviar.</li>
-            <li>Gráficos: Matplotlib (server-side) o Chart.js (client-side).</li>
-          </ul>
+        <div style="margin-top:12px;text-align:center;font-size:13px;color:var(--muted)">
+          <div style="font-weight:800">Disponibilidad</div>
+          <div style="margin-top:8px"><span class="badge available">Disponible</span> <span class="badge busy">Ocupado</span></div>
         </div>
-
-      </section>
-
-      <!-- Right column: inspector -->
-      <aside class="inspector panel">
-        <h3 style="margin:0">Inspector</h3>
-        <div class="meta">Paleta de colores</div>
-        <div class="palette">
-          <div class="sw" style="background:var(--accent)"></div>
-          <div class="sw" style="background:var(--accent-2)"></div>
-          <div class="sw" style="background:var(--card)"></div>
-          <div class="sw" style="background:var(--muted);"></div>
-        </div>
-
-        <div class="meta">Tipografía</div>
-        <div class="muted">Inter / Roboto — Sistema</div>
-
-        <div class="meta">Componentes</div>
-        <ul class="muted">
-          <li>Header</li>
-          <li>Card / Panel</li>
-          <li>Uploader</li>
-          <li>Table / Pagination</li>
-          <li>Chart area</li>
-        </ul>
-
-        <div class="meta">Espaciado</div>
-        <div class="muted">Grid principal con 1fr + 360px; cards con padding 12px; border-radius 12-16px.</div>
-
-        <div style="margin-top:14px">
-          <strong style="font-size:13px">Exportable</strong>
-          <div class="muted" style="font-size:13px">HTML/CSS listo para integrar con Flask o cualquier backend.</div>
-        </div>
-
       </aside>
-    </main>
+    </section>
 
-    <footer>
-      Plantilla generada — Colores accesibles y estructura responsive.
-    </footer>
+    <!-- LISTADO DE HABITACIONES -->
+    <section id="rooms" style="margin-top:18px">
+      <h3>Habitaciones destacadas</h3>
+      <div class="rooms-grid" id="roomsGrid">
+        <!-- Las habitaciones se inyectan por JS -->
+      </div>
+    </section>
+
   </div>
+
+  <!-- MODAL DE RESERVA -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal" role="dialog" aria-modal="true">
+      <h3 id="modalTitle">Reservar habitación</h3>
+      <p id="modalDesc" style="color:var(--muted)"></p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
+        <input id="guestName" placeholder="Nombre completo" />
+        <input id="guestEmail" placeholder="Correo electrónico" />
+      </div>
+      <div style="display:flex;gap:10px;margin-top:12px;justify-content:flex-end">
+        <button onclick="closeModal()" class="ghost">Cancelar</button>
+        <button class="primary" id="confirmBooking">Confirmar reserva</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <small>Prototype - HotelPlus · Diseño técnico + HTML/CSS · Código de demostración</small>
+  </footer>
+
+  <script>
+    // Datos de ejemplo: en un sistema real vendrían de un endpoint/back-end.
+    const rooms = [
+      {id:1,name:'Doble Estándar',desc:'Cama matrimonial, baño privado, vista a la ciudad',price:72,type:'double',img:'https://images.unsplash.com/photo-1501117716987-c8e6cc558371?auto=format&fit=crop&w=800&q=60'},
+      {id:2,name:'Individual Comfort',desc:'Cama individual, escritorio, baño privado',price:45,type:'single',img:'https://images.unsplash.com/photo-1505691723518-36a59b6b8d04?auto=format&fit=crop&w=800&q=60'},
+      {id:3,name:'Suite Ejecutiva',desc:'Suite amplia con sala, mini bar y balcón',price:180,type:'suite',img:'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=60'},
+      {id:4,name:'Doble con Vista',desc:'Cama matrimonial y vista panorámica',price:95,type:'double',img:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=60'}
+    ];
+
+    const roomsGrid = document.getElementById('roomsGrid');
+    const totalBookingsEl = document.getElementById('totalBookings');
+
+    function renderRooms(list){
+      roomsGrid.innerHTML = '';
+      list.forEach(r=>{
+        const card = document.createElement('div'); card.className='room';
+        card.innerHTML = `
+          <img src="${r.img}" alt="${r.name}" loading="lazy" />
+          <h4>${r.name}</h4>
+          <p>${r.desc}</p>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="price">USD ${r.price.toFixed(2)}</div>
+            <div>
+              <button class="ghost" style="margin-right:8px" onclick="viewDetails(${r.id})">Detalles</button>
+              <button class="primary" onclick="openBookingModal(${r.id})">Reservar</button>
+            </div>
+          </div>
+        `;
+        roomsGrid.appendChild(card);
+      })
+    }
+
+    renderRooms(rooms);
+
+    // Reserva (simulada)
+    function openBookingModal(roomId){
+      const r = rooms.find(x=>x.id===roomId);
+      document.getElementById('modalTitle').innerText = 'Reservar: '+r.name;
+      document.getElementById('modalDesc').innerText = r.desc + ' — Precio por noche: USD '+r.price.toFixed(2);
+      document.getElementById('modalBackdrop').style.display = 'flex';
+      window.currentRoom = r;
+    }
+    function closeModal(){document.getElementById('modalBackdrop').style.display='none';}
+
+    document.getElementById('confirmBooking').addEventListener('click', ()=>{
+      const name = document.getElementById('guestName').value.trim();
+      const email = document.getElementById('guestEmail').value.trim();
+      if(!name || !email){alert('Por favor ingresa nombre y correo.');return}
+
+      const booking = {id:Date.now(),room:window.currentRoom.id,name,email,roomName:window.currentRoom.name,date:new Date().toISOString()};
+      const list = JSON.parse(localStorage.getItem('hp_bookings')||'[]');
+      list.push(booking); localStorage.setItem('hp_bookings',JSON.stringify(list));
+      updateAdmin();
+      closeModal();
+      alert('Reserva confirmada (simulación). ID: '+booking.id);
+      document.getElementById('guestName').value='';document.getElementById('guestEmail').value='';
+    });
+
+    function updateAdmin(){
+      const list = JSON.parse(localStorage.getItem('hp_bookings')||'[]');
+      totalBookingsEl.innerText = list.length;
+    }
+    updateAdmin();
+
+    // Buscador simple (filtrado en cliente)
+    document.getElementById('searchBtn').addEventListener('click', ()=>{
+      const type = document.getElementById('roomType').value;
+      const guests = parseInt(document.getElementById('guests').value,10);
+      let filtered = rooms.slice();
+      if(type!=='any') filtered = filtered.filter(r=>r.type===type);
+      // ejemplo simple: si guests>2 y tipo suite preferible
+      if(guests>2) filtered = filtered.sort((a,b)=> (a.type==='suite')? -1:1);
+      renderRooms(filtered);
+    });
+
+    document.getElementById('clearBtn').addEventListener('click', ()=>{document.getElementById('checkin').value='';document.getElementById('checkout').value='';document.getElementById('roomType').value='any';document.getElementById('guests').value='2';renderRooms(rooms)})
+
+    function viewDetails(id){const r=rooms.find(x=>x.id===id);alert(r.name+'\n\n'+r.desc+'\nPrecio: $'+r.price)}
+
+    function applyPromo(){alert('Promoción aplicada: 15% en reservas de 3+ noches (simulación)')}
+    function openBookings(){const list=JSON.parse(localStorage.getItem('hp_bookings')||'[]');if(!list.length){alert('No hay reservas registradas.')}else{let out='Reservas:\n';list.forEach(b=>out+=`ID:${b.id} - ${b.roomName} - ${b.name}\n`);alert(out)}}
+
+    // pequeñas mejoras UX: detectar fechas inválidas
+    document.getElementById('checkout').addEventListener('change',()=>{
+      const inDate = document.getElementById('checkin').value; const outDate = document.getElementById('checkout').value;
+      if(inDate && outDate && new Date(outDate) <= new Date(inDate)){
+        alert('La fecha de salida debe ser posterior a la fecha de entrada.'); document.getElementById('checkout').value='';
+      }
+    })
+
+  </script>
 </body>
 </html>
+
