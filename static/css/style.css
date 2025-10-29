@@ -1,0 +1,5 @@
+body { background: linear-gradient(180deg, #f8fafc 0%, #ffffff 70%); }
+.navbar-brand { font-weight: 700; letter-spacing: .4px; }
+.card { border-radius: 12px; box-shadow: 0 6px 18px rgba(13,38,59,0.06); }
+.table thead th { border-bottom: none; }
+footer { border-top: 1px solid rgba(0,0,0,0.04); }

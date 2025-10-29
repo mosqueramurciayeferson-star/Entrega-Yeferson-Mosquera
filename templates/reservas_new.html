@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Nueva Reserva</h2>
+<form method="post" class="row g-3 needs-validation" novalidate>
+  <div class="col-md-6">
+    <label class="form-label">Nombre</label>
+    <input name="nombre" class="form-control" required>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Correo</label>
+    <input name="correo" type="email" class="form-control">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Teléfono</label>
+    <input name="telefono" class="form-control">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Fecha llegada</label>
+    <input name="fecha_llegada" type="date" class="form-control">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">Fecha salida</label>
+    <input name="fecha_salida" type="date" class="form-control">
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Habitaciones</label>
+    <input name="habitaciones" type="number" min="1" value="1" class="form-control">
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Total (USD)</label>
+    <input name="total" type="number" step="0.01" class="form-control">
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary">Guardar</button>
+    <a class="btn btn-outline-secondary" href="{{ url_for('reservas') }}">Cancelar</a>
+  </div>
+</form>
+{% endblock %}

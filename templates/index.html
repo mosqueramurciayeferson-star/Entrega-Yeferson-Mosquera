@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row align-items-center">
+  <div class="col-md-8">
+    <h1 class="display-5">Bienvenido a HotelPlus</h1>
+    <p class="lead">Sistema modernizado de reservas. Administra y exporta reservas, crea nuevas y navega fácilmente.</p>
+    <a href="{{ url_for('reservas') }}" class="btn btn-primary btn-lg">Ver Reservas</a>
+    <a href="{{ url_for('reservas_new') }}" class="btn btn-outline-primary btn-lg ms-2">Crear Reserva</a>
+  </div>
+  <div class="col-md-4 text-center">
+    <img src="https://cdn.jsdelivr.net/gh/edent/SuperTinyIcons/images/svg/hotel.svg" alt="hotel" style="max-width:160px;opacity:.9">
+  </div>
+</div>
+{% endblock %}
